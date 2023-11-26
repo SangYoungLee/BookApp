@@ -59,7 +59,7 @@ class SearchBookViewModel @Inject constructor(
         }
     }
 
-    private fun onTextChanged(text: String?) {
+    private fun onTextChanged(text: String) {
         inputQuery.value = text
     }
 
