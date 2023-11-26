@@ -1,4 +1,4 @@
-package com.syapp.bookapp
+package com.syapp.bookapp.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
