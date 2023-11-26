@@ -2,9 +2,9 @@ package com.syapp.bookapp.search_book
 
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.Book
-import com.syapp.styleapp.common.base.ViewEvent
-import com.syapp.styleapp.common.base.ViewSideEffect
-import com.syapp.styleapp.common.base.ViewState
+import com.syapp.bookapp.core.base.ViewEvent
+import com.syapp.bookapp.core.base.ViewSideEffect
+import com.syapp.bookapp.core.base.ViewState
 
 interface SearchBookContract {
 

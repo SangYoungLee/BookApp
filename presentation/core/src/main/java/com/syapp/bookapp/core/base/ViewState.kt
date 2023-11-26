@@ -1,3 +1,3 @@
-package com.syapp.styleapp.common.base
+package com.syapp.bookapp.core.base
 
 interface ViewState

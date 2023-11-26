@@ -8,7 +8,7 @@ import com.syapp.bookapp.domain.usecase.GetSearchBookUseCase
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewState
-import com.syapp.styleapp.common.base.BaseViewModel
+import com.syapp.bookapp.core.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.syapp.styleapp.common.base
+package com.syapp.bookapp.core.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
