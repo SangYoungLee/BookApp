@@ -49,7 +49,7 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
-    implementation(project(":presentation:core"))
+    implementation(project(":presentation:search_book"))
 
     Dep.AndroidX.run {
         implementation(core)
@@ -71,5 +71,9 @@ dependencies {
     Dep.Hilt.run {
         implementation(android)
         kapt(androidCompiler)
+    }
+
+    Dep.Navigation.run {
+        implementation(compose)
     }
 }
