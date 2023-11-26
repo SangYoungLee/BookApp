@@ -63,6 +63,16 @@ object Dep {
         const val compose = "io.coil-kt:coil-compose:$version"
     }
 
+    object Ktor {
+        private const val version = "2.3.2"
+
+        const val core = "io.ktor:ktor-client-core:$version"
+        const val cio = "io.ktor:ktor-client-cio:$version"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$version"
+        const val logging = "io.ktor:ktor-client-logging:$version"
+    }
+
     object JUnit {
         const val junit = "junit:junit:4.13.2"
         const val junitExt = "androidx.test.ext:junit:1.1.5"
