@@ -7,7 +7,7 @@ object BookMapper {
 
     fun mapToSearchBookPageInfo(response: SearchedBookResponse): SearchBookPageInfo {
         return SearchBookPageInfo(
-            bookList = response.books
+            bookList = response.books.orEmpty()
         )
     }
 }
