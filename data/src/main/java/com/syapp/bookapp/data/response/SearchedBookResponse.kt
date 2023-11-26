@@ -8,11 +8,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchedBookResponse(
     @SerialName("books")
-    val books: List<Book>,
+    val books: List<Book>?,
     @SerialName("error")
-    val error: String,
+    val error: String?,
     @SerialName("page")
-    val page: String,
+    val page: Int?,
     @SerialName("total")
-    val total: String
+    val total: Int?
 )
