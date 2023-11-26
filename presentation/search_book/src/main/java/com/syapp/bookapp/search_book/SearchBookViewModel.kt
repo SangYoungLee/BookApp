@@ -37,16 +37,20 @@ class SearchBookViewModel @Inject constructor(
             .onEach { query ->
                 updateState {
                     copy(
-                        isLoading = true,
                         query = query,
-                        error = null,
                     )
                 }
             }
             .flowOn(Dispatchers.Main.immediate)
             .debounce(300L)
-            .onEach {
-                getSearchBookPageInfo(true)
+            .onEach { query ->
+                if (query.isEmpty()) {
+                    updateState {
+                        SearchBookViewState()
+                    }
+                } else {
+                    getSearchBookPageInfo(true)
+                }
             }
             .launchIn(viewModelScope)
     }
