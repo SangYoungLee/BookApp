@@ -18,8 +18,11 @@ abstract class BaseViewModel<VS: ViewState, SE: ViewSideEffect, VE: ViewEvent>(
     private val _sideEffect = Channel<SE>()
     val sideEffect = _sideEffect.receiveAsFlow()
 
+    val currentViewState: VS
+        get() = viewState.value
+
     protected fun updateState(reducer: VS.() -> VS) {
-        val newState = _viewState.value.reducer()
+        val newState = currentViewState.reducer()
         _viewState.value = newState
     }
 
