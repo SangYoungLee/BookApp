@@ -32,19 +32,21 @@ dependencies {
     implementation(project(":domain"))
     api(project(":presentation:core"))
 
-    Dep.Compose.apply {
+    Dep.Compose.run {
         implementation(ui)
         implementation(tool)
         implementation(material)
     }
 
-    Dep.Navigation.apply {
+    Dep.Navigation.run {
         implementation(compose)
         implementation(hiltCompose)
     }
 
-    Dep.Hilt.apply {
+    Dep.Hilt.run {
         implementation(android)
         kapt(androidCompiler)
     }
+
+    implementation(Dep.Coil.compose)
 }
