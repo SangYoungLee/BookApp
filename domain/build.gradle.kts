@@ -2,6 +2,7 @@ plugins {
     `java-library`
     id(Plugins.Module.kotlin)
     id(Plugins.Module.kotlinKapt)
+    id(Plugins.Module.kotlinSerialization)
 }
 
 java {
@@ -15,6 +16,7 @@ dependencies {
         implementation(test)
     }
     implementation(Dep.Java.inject)
+    implementation(Dep.Kotlin.serialization)
 
     testImplementation(Dep.JUnit.junit)
     testImplementation(Dep.Mockito.mockitoKotlin)
