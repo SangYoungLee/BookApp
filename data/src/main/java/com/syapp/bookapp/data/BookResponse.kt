@@ -1,6 +1,6 @@
 package com.syapp.bookapp.data
 
-import com.syapp.bookapp.domain.Book
+import com.syapp.bookapp.domain.model.Book
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.syapp.bookapp.domain
+package com.syapp.bookapp.domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
