@@ -1,5 +1,6 @@
 package com.syapp.bookapp.search_book
 
+import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.Book
 import com.syapp.styleapp.common.base.ViewEvent
 import com.syapp.styleapp.common.base.ViewSideEffect
@@ -9,8 +10,11 @@ interface SearchBookContract {
 
     data class SearchBookViewState(
         val isLoading: Boolean = false,
-        val bookList: List<Book> = emptyList(),
+        val isMoreLoading: Boolean = false,
         val error: Throwable? = null,
+        val query: String? = null,
+        val bookList: List<Book> = emptyList(),
+        val page: Int = INITIAL_PAGE_INDEX,
     ) : ViewState {
         val hasError: Boolean
             get() = error != null
