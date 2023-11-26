@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class BookResponse(
+data class SearchedBookResponse(
     @SerialName("books")
     val books: List<Book>,
     @SerialName("error")
