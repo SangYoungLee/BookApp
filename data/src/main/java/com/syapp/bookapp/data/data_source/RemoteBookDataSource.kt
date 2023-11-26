@@ -12,6 +12,6 @@ internal class RemoteBookDataSource @Inject constructor(
 ) : BookDataSource {
 
     override suspend fun getSearchBookList(query: String, page: Int): SearchedBookResponse {
-        return httpClient.get("${UrlConfig.BASE_URL}/$query/$page").body()
+        return httpClient.get("${UrlConfig.BASE_URL}/search/$query/$page").body()
     }
 }
