@@ -10,3 +10,4 @@ rootProject.name = "BookApp"
 include(":app")
 include(":domain")
 include(":data")
+include(":presentation:core")
