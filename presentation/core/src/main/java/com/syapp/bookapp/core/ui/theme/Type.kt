@@ -1,4 +1,4 @@
-package com.syapp.bookapp.ui.theme
+package com.syapp.bookapp.core.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

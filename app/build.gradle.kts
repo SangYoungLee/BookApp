@@ -1,6 +1,8 @@
 plugins {
     id(Plugins.Module.androidApplication)
     id(Plugins.Module.kotlinAndroid)
+    id(Plugins.Module.kotlinKapt)
+    id(Plugins.Module.hiltAndroid)
 }
 
 android {
@@ -45,21 +47,29 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":presentation:core"))
 
-    Dep.AndroidX.apply {
+    Dep.AndroidX.run {
         implementation(core)
         implementation(appcompat)
     }
 
-    Dep.Activity.apply {
+    Dep.Activity.run {
         implementation(activity)
         implementation(compose)
     }
 
-    Dep.Compose.apply {
+    Dep.Compose.run {
         implementation(ui)
         implementation(tool)
         implementation(material)
         implementation(liveData)
+    }
+
+    Dep.Hilt.run {
+        implementation(android)
+        kapt(androidCompiler)
     }
 }
