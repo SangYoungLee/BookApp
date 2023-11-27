@@ -6,6 +6,8 @@ import com.syapp.bookapp.domain.input.SearchBookInput
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INCREASE_PER_PAGE
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.Book
+import com.syapp.bookapp.domain.model.state.ActionState
+import com.syapp.bookapp.domain.model.state.LoadType
 import com.syapp.bookapp.domain.usecase.GetSearchBookUseCase
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect
@@ -38,7 +40,7 @@ class SearchBookViewModel @Inject constructor(
             .onEach { query ->
                 updateState {
                     copy(
-                        isLoading = true,
+                        actionState = ActionState.contentLoading(),
                         query = query,
                     )
                 }
@@ -83,11 +85,14 @@ class SearchBookViewModel @Inject constructor(
     private fun getSearchBookPageInfo(isRefresh: Boolean = true) {
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
+            val actionState = if (isRefresh) {
+                ActionState.contentLoading()
+            } else {
+                ActionState.moreLoading()
+            }
             updateState {
                 copy(
-                    isLoading = isRefresh,
-                    isMoreLoading = isRefresh.not(),
-                    error = null,
+                    actionState = actionState,
                     page = if (isRefresh) {
                         INITIAL_PAGE_INDEX
                     } else {
@@ -106,8 +111,7 @@ class SearchBookViewModel @Inject constructor(
 
                 updateState {
                     copy(
-                        isLoading = false,
-                        isMoreLoading = false,
+                        actionState = ActionState.None,
                         bookList = if (isRefresh) {
                             resultBookInfo.bookList
                         } else {
@@ -121,17 +125,15 @@ class SearchBookViewModel @Inject constructor(
             } catch (e: Throwable) {
                 e.printStackTrace()
 
-                var error: Throwable? = e
+                var actionState: ActionState = ActionState.Error(e)
 
                 if (e is CancellationException || isRefresh.not()) {
-                    error = null
+                    actionState = ActionState.None
                 }
 
                 updateState {
                     copy(
-                        isLoading = false,
-                        isMoreLoading = false,
-                        error = error,
+                        actionState = actionState
                     )
                 }
             }

@@ -1,25 +1,21 @@
 package com.syapp.bookapp.search_book
 
 import androidx.annotation.StringRes
-import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
-import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.core.base.ViewEvent
 import com.syapp.bookapp.core.base.ViewSideEffect
 import com.syapp.bookapp.core.base.ViewState
+import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
+import com.syapp.bookapp.domain.model.Book
+import com.syapp.bookapp.domain.model.state.ActionState
 
 interface SearchBookContract {
 
     data class SearchBookViewState(
-        val isLoading: Boolean = false,
-        val isMoreLoading: Boolean = false,
-        val error: Throwable? = null,
+        val actionState: ActionState = ActionState.None,
         val query: String = "",
         val bookList: List<Book> = emptyList(),
         val page: Int = INITIAL_PAGE_INDEX,
-    ) : ViewState {
-        val hasError: Boolean
-            get() = error != null
-    }
+    ) : ViewState
 
     sealed interface SearchBookViewSideEffect : ViewSideEffect {
         data class MoveToDetailBook(

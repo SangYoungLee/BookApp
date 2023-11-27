@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.syapp.bookapp.core.ui.ErrorScreen
 import com.syapp.bookapp.core.ui.LoadingScreen
 import com.syapp.bookapp.core.util.rememberLambda
+import com.syapp.bookapp.domain.model.state.ActionState
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent.OnClickBook
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent.OnTextChanged
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect.MoveToDetailBook
@@ -47,10 +48,10 @@ fun SearchBookScreen(
             })
         }
     ) { paddingValues ->
-        if (viewState.isLoading) {
+        if (viewState.actionState.isContentLoading) {
             LoadingScreen()
-        } else if (viewState.hasError) {
-            ErrorScreen(throwable = viewState.error)
+        } else if (viewState.actionState.isError) {
+            ErrorScreen(throwable = (viewState.actionState as? ActionState.Error)?.cause)
         } else {
             SearchBookContent(
                 bookList = viewState.bookList,
