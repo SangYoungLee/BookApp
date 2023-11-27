@@ -2,18 +2,28 @@ package com.syapp.bookapp.data.mapper
 
 import com.syapp.bookapp.data.response.DetailBookResponse
 import com.syapp.bookapp.data.response.SearchedBookResponse
+import com.syapp.bookapp.domain.error.NoDataException
+import com.syapp.bookapp.domain.error.ServerException
 import com.syapp.bookapp.domain.model.DetailBook
 import com.syapp.bookapp.domain.model.SearchBookPageInfo
 
 object BookMapper {
 
     fun mapToSearchBookPageInfo(response: SearchedBookResponse): SearchBookPageInfo {
+        if (response.error.isNullOrEmpty().not()) {
+            throw ServerException(response.error.orEmpty())
+        }
+
         return SearchBookPageInfo(
-            bookList = response.books.orEmpty()
+            bookList = response.books ?: throw NoDataException()
         )
     }
 
     fun mapToDetailBook(response: DetailBookResponse): DetailBook {
+        if (response.error.isNullOrEmpty().not()) {
+            throw ServerException(response.error.orEmpty())
+        }
+
         return DetailBook(
             authors = response.authors,
             desc = response.desc,
