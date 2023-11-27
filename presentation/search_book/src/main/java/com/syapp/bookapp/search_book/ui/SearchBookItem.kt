@@ -1,5 +1,6 @@
 package com.syapp.bookapp.search_book.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,11 +28,15 @@ import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.search_book.R
 
 @Composable
-fun SearchBookItem(book: Book) {
+fun SearchBookItem(
+    book: Book,
+    onClickBook: (Book) -> Unit
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClickBook.invoke(book) }
             .padding(16.dp)
     ) {
         AsyncImage(

@@ -1,14 +1,15 @@
 package com.syapp.bookapp.search_book
 
 import androidx.lifecycle.viewModelScope
+import com.syapp.bookapp.core.base.BaseViewModel
 import com.syapp.bookapp.domain.input.SearchBookInput
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INCREASE_PER_PAGE
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
+import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.domain.usecase.GetSearchBookUseCase
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewState
-import com.syapp.bookapp.core.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -60,11 +61,22 @@ class SearchBookViewModel @Inject constructor(
             is SearchBookViewEvent.OnTextChanged -> {
                 onTextChanged(viewEvent.text)
             }
+            is SearchBookViewEvent.OnClickBook -> {
+                onClickBook(viewEvent.book)
+            }
         }
     }
 
     private fun onTextChanged(text: String) {
         inputQuery.value = text
+    }
+
+    private fun onClickBook(book: Book) {
+        book.isbn13?.takeIf { it.isNotEmpty() }?.let {
+            sendSideEffect(SearchBookViewSideEffect.MoveToDetailBook(it))
+        } ?: kotlin.run {
+            sendSideEffect(SearchBookViewSideEffect.ShowToast(R.string.isbn13_not_valid_message))
+        }
     }
 
     private fun getSearchBookPageInfo(isRefresh: Boolean = true) {

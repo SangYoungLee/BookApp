@@ -1,5 +1,6 @@
 package com.syapp.bookapp.search_book
 
+import androidx.annotation.StringRes
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.core.base.ViewEvent
@@ -21,12 +22,17 @@ interface SearchBookContract {
     }
 
     sealed interface SearchBookViewSideEffect : ViewSideEffect {
-        class MoveToDetailBook(
+        data class MoveToDetailBook(
             val isbn13: String
+        ) : SearchBookViewSideEffect
+
+        data class ShowToast(
+            @StringRes val messageResId: Int
         ) : SearchBookViewSideEffect
     }
 
     sealed interface SearchBookViewEvent : ViewEvent {
-        class OnTextChanged(val text: String) : SearchBookViewEvent
+        data class OnTextChanged(val text: String) : SearchBookViewEvent
+        data class OnClickBook(val book: Book) : SearchBookViewEvent
     }
 }
