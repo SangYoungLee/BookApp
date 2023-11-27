@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -17,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -27,6 +29,7 @@ import com.syapp.bookapp.search_book.R
 @Composable
 fun SearchBookItem(book: Book) {
     Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
@@ -53,7 +56,9 @@ fun SearchBookItem(book: Book) {
                 text = book.title.orEmpty(),
                 fontSize = 18.textDp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = Color.Black,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
 
             Spacer(modifier = Modifier.size(3.dp))
@@ -62,7 +67,9 @@ fun SearchBookItem(book: Book) {
                 text = book.subtitle.orEmpty(),
                 fontSize = 14.textDp,
                 fontWeight = FontWeight.Normal,
-                color = Color.Gray
+                color = Color.Gray,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
