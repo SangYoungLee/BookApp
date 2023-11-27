@@ -98,7 +98,7 @@ class SearchBookViewModel @Inject constructor(
             try {
                 val resultBookInfo = getSearchBookUseCase(
                     SearchBookInput(
-                        query = currentViewState.query.orEmpty(),
+                        query = currentViewState.query,
                         page = currentViewState.page
                     )
                 )

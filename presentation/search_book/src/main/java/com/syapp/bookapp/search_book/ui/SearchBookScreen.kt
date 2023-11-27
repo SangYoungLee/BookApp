@@ -9,12 +9,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.syapp.bookapp.core.ui.ErrorScreen
 import com.syapp.bookapp.core.ui.LoadingScreen
 import com.syapp.bookapp.core.util.rememberLambda
-import com.syapp.bookapp.search_book.SearchBookContract
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent.OnClickBook
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent.OnTextChanged
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect.MoveToDetailBook
