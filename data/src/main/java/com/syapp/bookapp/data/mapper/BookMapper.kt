@@ -10,7 +10,7 @@ import com.syapp.bookapp.domain.model.SearchBookPageInfo
 object BookMapper {
 
     fun mapToSearchBookPageInfo(response: SearchedBookResponse): SearchBookPageInfo {
-        if (response.error.isNullOrEmpty().not()) {
+        if ((response.error?.toIntOrNull() ?: 0) > 0) {
             throw ServerException(response.error.orEmpty())
         }
 
@@ -20,7 +20,7 @@ object BookMapper {
     }
 
     fun mapToDetailBook(response: DetailBookResponse): DetailBook {
-        if (response.error.isNullOrEmpty().not()) {
+        if ((response.error?.toIntOrNull() ?: 0) > 0) {
             throw ServerException(response.error.orEmpty())
         }
 
