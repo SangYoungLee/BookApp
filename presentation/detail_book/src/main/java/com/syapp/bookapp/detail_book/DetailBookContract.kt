@@ -8,6 +8,10 @@ import com.syapp.bookapp.domain.model.state.ActionState
 
 interface DetailBookContract {
 
+    companion object {
+        const val KEY_REQUEST_ID = "request_id_isbn_13"
+    }
+
     data class DetailBookViewState(
         val actionState: ActionState = ActionState.None,
         val detailBook: DetailBook? = null,
