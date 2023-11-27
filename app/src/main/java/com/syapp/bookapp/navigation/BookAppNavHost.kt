@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.syapp.bookapp.navigation.graph.detailBook
 import com.syapp.bookapp.navigation.graph.searchBook
 
 @Composable
@@ -17,5 +18,6 @@ fun BookAppNavHost(
         modifier = modifier,
     ) {
         searchBook(navHostController)
+        detailBook(navHostController)
     }
 }

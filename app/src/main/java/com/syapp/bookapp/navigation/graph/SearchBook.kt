@@ -10,6 +10,10 @@ fun NavGraphBuilder.searchBook(navController: NavController) {
     composable(
         route = Destination.SearchBookScreen.route
     ) {
-        SearchBookScreen()
+        SearchBookScreen(
+            navigateToDetailBook = { isbn13 ->
+                navController.navigate("${Destination.DetailBookScreen.route}/$isbn13")
+            }
+        )
     }
 }
