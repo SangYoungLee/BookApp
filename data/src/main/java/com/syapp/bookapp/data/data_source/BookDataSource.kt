@@ -1,5 +1,6 @@
 package com.syapp.bookapp.data.data_source
 
+import com.syapp.bookapp.data.response.DetailBookResponse
 import com.syapp.bookapp.data.response.SearchedBookResponse
 
 interface BookDataSource {
@@ -8,4 +9,8 @@ interface BookDataSource {
         query: String,
         page: Int,
     ): SearchedBookResponse
+
+    suspend fun getDetailBook(
+        isbn13: String,
+    ): DetailBookResponse
 }
