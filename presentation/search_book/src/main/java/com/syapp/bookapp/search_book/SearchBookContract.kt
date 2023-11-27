@@ -15,6 +15,7 @@ interface SearchBookContract {
         val query: String = "",
         val bookList: List<Book> = emptyList(),
         val page: Int = INITIAL_PAGE_INDEX,
+        val hasNext: Boolean = false,
     ) : ViewState
 
     sealed interface SearchBookViewSideEffect : ViewSideEffect {
@@ -30,5 +31,6 @@ interface SearchBookContract {
     sealed interface SearchBookViewEvent : ViewEvent {
         data class OnTextChanged(val text: String) : SearchBookViewEvent
         data class OnClickBook(val book: Book) : SearchBookViewEvent
+        object OnLoadMore : SearchBookViewEvent
     }
 }

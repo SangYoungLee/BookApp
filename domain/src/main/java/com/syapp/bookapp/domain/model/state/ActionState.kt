@@ -14,6 +14,9 @@ sealed class ActionState {
 
     data class Error(val cause: Throwable?) : ActionState()
 
+    val isLoading: Boolean
+        get() = this is Loading
+
     val isContentLoading: Boolean
         get() = this is Loading && loadType == LoadType.CONTENT_LOADING
 

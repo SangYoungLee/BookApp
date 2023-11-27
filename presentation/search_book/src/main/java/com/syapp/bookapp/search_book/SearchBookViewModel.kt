@@ -66,6 +66,9 @@ class SearchBookViewModel @Inject constructor(
             is SearchBookViewEvent.OnClickBook -> {
                 onClickBook(viewEvent.book)
             }
+            is SearchBookViewEvent.OnLoadMore -> {
+                onLoadMore()
+            }
         }
     }
 
@@ -118,7 +121,8 @@ class SearchBookViewModel @Inject constructor(
                                 addAll(resultBookInfo.bookList)
                             }
                         },
-                        page = page + INCREASE_PER_PAGE
+                        page = page + INCREASE_PER_PAGE,
+                        hasNext = true,
                     )
                 }
             } catch (e: Throwable) {
@@ -136,6 +140,16 @@ class SearchBookViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    private fun onLoadMore() {
+        if (currentViewState.actionState.isLoading || currentViewState.hasNext.not()) {
+            return
+        }
+
+        loadJob = viewModelScope.launch {
+            fetchSearchBookPageInfo(false)
         }
     }
 }
