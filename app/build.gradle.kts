@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":presentation:search_book"))
+    implementation(project(":presentation:detail_book"))
 
     Dep.AndroidX.run {
         implementation(core)
