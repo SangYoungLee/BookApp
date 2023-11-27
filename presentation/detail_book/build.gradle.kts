@@ -47,4 +47,6 @@ dependencies {
         implementation(android)
         kapt(androidCompiler)
     }
+
+    implementation(Dep.Coil.compose)
 }

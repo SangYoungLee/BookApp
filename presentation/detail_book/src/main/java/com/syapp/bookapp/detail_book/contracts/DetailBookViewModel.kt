@@ -1,9 +1,9 @@
-package com.syapp.bookapp.detail_book
+package com.syapp.bookapp.detail_book.contracts
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.syapp.bookapp.core.base.BaseViewModel
-import com.syapp.bookapp.detail_book.DetailBookContract.*
+import com.syapp.bookapp.detail_book.contracts.DetailBookContract.*
 import com.syapp.bookapp.domain.input.DetailBookInput
 import com.syapp.bookapp.domain.model.state.ActionState
 import com.syapp.bookapp.domain.usecase.GetDetailBookUseCase

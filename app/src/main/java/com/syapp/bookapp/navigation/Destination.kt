@@ -2,7 +2,7 @@ package com.syapp.bookapp.navigation
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.syapp.bookapp.detail_book.DetailBookContract
+import com.syapp.bookapp.detail_book.contracts.DetailBookContract
 
 sealed class Destination(val route: String) {
 

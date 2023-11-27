@@ -1,4 +1,4 @@
-package com.syapp.bookapp.detail_book
+package com.syapp.bookapp.detail_book.contracts
 
 import com.syapp.bookapp.core.base.ViewEvent
 import com.syapp.bookapp.core.base.ViewSideEffect
