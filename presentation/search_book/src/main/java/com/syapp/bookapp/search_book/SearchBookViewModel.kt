@@ -7,7 +7,6 @@ import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INCREASE_PER_PAG
 import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.domain.model.state.ActionState
-import com.syapp.bookapp.domain.model.state.LoadType
 import com.syapp.bookapp.domain.usecase.GetSearchBookUseCase
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewEvent
 import com.syapp.bookapp.search_book.SearchBookContract.SearchBookViewSideEffect
@@ -53,7 +52,7 @@ class SearchBookViewModel @Inject constructor(
                         SearchBookViewState()
                     }
                 } else {
-                    getSearchBookPageInfo(true)
+                    fetchSearchBookPageInfo(true)
                 }
             }
             .launchIn(viewModelScope)
@@ -82,7 +81,7 @@ class SearchBookViewModel @Inject constructor(
         }
     }
 
-    private fun getSearchBookPageInfo(isRefresh: Boolean = true) {
+    private fun fetchSearchBookPageInfo(isRefresh: Boolean = true) {
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
             val actionState = if (isRefresh) {
