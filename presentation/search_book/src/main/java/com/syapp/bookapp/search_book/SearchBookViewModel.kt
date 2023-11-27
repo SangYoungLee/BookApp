@@ -38,6 +38,7 @@ class SearchBookViewModel @Inject constructor(
             .onEach { query ->
                 updateState {
                     copy(
+                        isLoading = true,
                         query = query,
                     )
                 }
