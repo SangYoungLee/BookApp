@@ -30,6 +30,10 @@ class GetSearchBookUseCase @Inject constructor(
                 bookList = acc.bookList + result.bookList,
                 hasNext = acc.hasNext || result.hasNext
             )
+        }.run {
+            copy(
+                bookList = bookList.distinctBy { it.isbn13 }
+            )
         }
     }
 
