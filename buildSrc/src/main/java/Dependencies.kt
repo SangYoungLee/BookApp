@@ -15,7 +15,8 @@ object Dep {
         const val compilerVersion = "1.4.7"
 
         const val ui = "androidx.compose.ui:ui:$version"
-        const val tool = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val tooling = "androidx.compose.ui:ui-tooling:$version"
         const val material = "androidx.compose.material:material:1.3.1"
         const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     }
@@ -61,6 +62,16 @@ object Dep {
         private const val version = "2.4.0"
 
         const val compose = "io.coil-kt:coil-compose:$version"
+    }
+
+    object Ktor {
+        private const val version = "2.3.2"
+
+        const val core = "io.ktor:ktor-client-core:$version"
+        const val cio = "io.ktor:ktor-client-cio:$version"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$version"
+        const val logging = "io.ktor:ktor-client-logging:$version"
     }
 
     object JUnit {
