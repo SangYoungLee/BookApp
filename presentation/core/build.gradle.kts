@@ -32,7 +32,8 @@ dependencies {
 
     Dep.Compose.run {
         implementation(ui)
-        implementation(tool)
+        implementation(toolingPreview)
+        debugImplementation(tooling)
         implementation(material)
     }
 }

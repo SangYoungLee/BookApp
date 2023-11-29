@@ -64,7 +64,7 @@ dependencies {
 
     Dep.Compose.run {
         implementation(ui)
-        implementation(tool)
+        implementation(toolingPreview)
         implementation(material)
         implementation(liveData)
     }

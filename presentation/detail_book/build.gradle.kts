@@ -34,7 +34,8 @@ dependencies {
 
     Dep.Compose.apply {
         implementation(ui)
-        implementation(tool)
+        implementation(toolingPreview)
+        debugImplementation(tooling)
         implementation(material)
     }
 

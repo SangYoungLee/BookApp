@@ -15,7 +15,8 @@ object Dep {
         const val compilerVersion = "1.4.7"
 
         const val ui = "androidx.compose.ui:ui:$version"
-        const val tool = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val tooling = "androidx.compose.ui:ui-tooling:$version"
         const val material = "androidx.compose.material:material:1.3.1"
         const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
     }
