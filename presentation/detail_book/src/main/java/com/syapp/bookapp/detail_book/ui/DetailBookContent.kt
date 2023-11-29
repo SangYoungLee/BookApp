@@ -79,7 +79,8 @@ fun DetailBookContent(
         DetailBookMenuItem(
             imageVector = Icons.Default.Info,
             label = stringResource(id = R.string.description),
-            text = detailBook.desc.orEmpty()
+            text = detailBook.desc.orEmpty(),
+            textMaxLines = 3
         )
     }
 }
