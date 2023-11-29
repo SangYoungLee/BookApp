@@ -15,7 +15,8 @@ object BookMapper {
         }
 
         return SearchBookPageInfo(
-            bookList = response.books ?: throw NoDataException()
+            bookList = response.books ?: throw NoDataException(),
+            hasNext = response.books.isNotEmpty()
         )
     }
 

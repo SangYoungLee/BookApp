@@ -122,7 +122,7 @@ class SearchBookViewModel @Inject constructor(
                             }
                         },
                         page = page + INCREASE_PER_PAGE,
-                        hasNext = true,
+                        hasNext = resultBookInfo.hasNext,
                     )
                 }
             } catch (e: Throwable) {
