@@ -20,9 +20,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.syapp.bookapp.core.ui.AppThemeWithSurface
 import com.syapp.bookapp.core.util.textDp
 import com.syapp.bookapp.domain.model.Book
 import com.syapp.bookapp.search_book.R
@@ -48,7 +50,7 @@ fun SearchBookItem(
             contentScale = ContentScale.Crop,
             contentDescription = "",
             modifier = Modifier
-                .clip(RoundedCornerShape(5.dp))
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.search_book_item_image_radius)))
                 .size(dimensionResource(id = R.dimen.search_book_item_image_size))
         )
 
@@ -77,5 +79,23 @@ fun SearchBookItem(
                 overflow = TextOverflow.Ellipsis
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun SearchBookItemPreview() {
+    AppThemeWithSurface {
+        SearchBookItem(
+            book = Book(
+                image = null,
+                isbn13 = null,
+                price = null,
+                subtitle = "부제목",
+                title = "제목",
+                url = null
+            ),
+            onClickBook = {}
+        )
     }
 }

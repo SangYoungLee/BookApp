@@ -5,7 +5,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalView
 
 private val DarkColorScheme = darkColors(
     primary = Purple80,
@@ -30,14 +29,12 @@ private val LightColorScheme = lightColors(
 @Composable
 fun BookAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-    val view = LocalView.current
 
     MaterialTheme(
         colors = colorScheme,

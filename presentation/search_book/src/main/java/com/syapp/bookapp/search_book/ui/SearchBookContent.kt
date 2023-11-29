@@ -16,7 +16,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.syapp.bookapp.core.ui.AppThemeWithSurface
 import com.syapp.bookapp.domain.model.Book
 
 private const val LOAD_MORE_THRESHOLD = 5
@@ -66,5 +68,28 @@ fun SearchBookContent(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun SearchBookContentPreview() {
+    AppThemeWithSurface {
+        SearchBookContent(
+            bookList = (0..20).map {
+               Book(
+                   image = null,
+                   isbn13 = null,
+                   price = null,
+                   subtitle = "부제목 $it",
+                   title = "제목 $it",
+                   url = null,
+               )
+            },
+            isMoreLoading = true,
+            onClickBook = {},
+            onLoadMore = {},
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }
