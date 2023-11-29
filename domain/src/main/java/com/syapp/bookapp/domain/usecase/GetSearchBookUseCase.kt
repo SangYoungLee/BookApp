@@ -1,9 +1,9 @@
 package com.syapp.bookapp.domain.usecase
 
 import com.syapp.bookapp.domain.input.SearchBookInput
+import com.syapp.bookapp.domain.input.SearchBookInput.Companion.INITIAL_PAGE_INDEX
 import com.syapp.bookapp.domain.model.SearchBookPageInfo
 import com.syapp.bookapp.domain.repository.BookRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -13,14 +13,23 @@ import javax.inject.Inject
 class GetSearchBookUseCase @Inject constructor(
     private val repository: BookRepository
 ) {
+    private val mapForHasNext = hashMapOf<String, Boolean>()
 
     suspend operator fun invoke(input: SearchBookInput): SearchBookPageInfo = withContext(Dispatchers.IO) {
-        val apiList = input.query.split("|").map { query ->
-            async {
-                kotlin.runCatching {
-                    getSearchBookListByOrOperator(query, input.page)
-                }.getOrElse {
-                    SearchBookPageInfo(bookList = emptyList(), hasNext = false)
+        if (input.page == INITIAL_PAGE_INDEX) {
+            mapForHasNext.clear()
+        }
+
+        val apiList = input.query.split("|").mapNotNull { query ->
+            takeIf {
+                mapForHasNext[query] != false
+            }?.let {
+                async {
+                    kotlin.runCatching {
+                        getSearchBookListByOrOperator(query, input.page)
+                    }.getOrElse {
+                        SearchBookPageInfo(bookList = emptyList(), hasNext = false)
+                    }
                 }
             }
         }
@@ -46,7 +55,9 @@ class GetSearchBookUseCase @Inject constructor(
             throw IllegalArgumentException()
         }
 
-        return repository.getSearchBookList(query, page).filterText(filterTextList)
+        return repository.getSearchBookList(query, page).also {
+            mapForHasNext[query] = it.bookList.isNotEmpty()
+        }.filterText(filterTextList)
     }
 
     private fun SearchBookPageInfo.filterText(filterTextList: List<String>): SearchBookPageInfo {
