@@ -10,6 +10,18 @@ class GetSearchBookUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(input: SearchBookInput): SearchBookPageInfo {
-        return repository.getSearchBookList(input.query, input.page)
+        val splitedQuery = input.query.split("-")
+        val query = splitedQuery[0]
+        val notContainTextList = splitedQuery.takeLast(splitedQuery.size - 1)
+
+        return repository.getSearchBookList(query, input.page).run {
+            copy(
+                bookList = bookList.filterNot { book ->
+                    notContainTextList.any { filterText ->
+                        book.title?.contains(filterText, ignoreCase = true) ?: false
+                    }
+                }
+            )
+        }
     }
 }
