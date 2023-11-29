@@ -12,16 +12,18 @@ class GetSearchBookUseCase @Inject constructor(
     suspend operator fun invoke(input: SearchBookInput): SearchBookPageInfo {
         val splitedQuery = input.query.split("-")
         val query = splitedQuery[0]
-        val notContainTextList = splitedQuery.takeLast(splitedQuery.size - 1)
+        val filterTextList = splitedQuery.takeLast(splitedQuery.size - 1)
 
-        return repository.getSearchBookList(query, input.page).run {
-            copy(
-                bookList = bookList.filterNot { book ->
-                    notContainTextList.any { filterText ->
-                        book.title?.contains(filterText, ignoreCase = true) ?: false
-                    }
+        return repository.getSearchBookList(query, input.page).filterText(filterTextList)
+    }
+
+    private fun SearchBookPageInfo.filterText(filterTextList: List<String>): SearchBookPageInfo {
+        return copy(
+            bookList = bookList.filterNot { book ->
+                filterTextList.any { filterText ->
+                    book.title?.contains(filterText, ignoreCase = true) ?: false
                 }
-            )
-        }
+            }
+        )
     }
 }
